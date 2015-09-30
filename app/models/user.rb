@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, on: :create
 
   def create_session
     Session.create(user: self)
