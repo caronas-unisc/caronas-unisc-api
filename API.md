@@ -26,9 +26,9 @@ Usado para cadastrar novos usuários.
 ##### CREATE
 Para fazer login.
 
-`curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com","password":"abc123"}' http://localhost:3000/api/v1/sessions`
+`curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com","password":"abc123"}' https://caronas-unisc.herokuapp.com/api/v1/sessions`
 
 ##### DELETE
 Ao fazer logout pelo app, chamar essa URL para excluir a sessão do servidor.
 
-`curl -X DELETE http://localhost:3000/api/v1/sessions/WkEiGHYJwHpc2DuD4Wu2qynX`
+`curl -X DELETE https://caronas-unisc.herokuapp.com/api/v1/sessions/WkEiGHYJwHpc2DuD4Wu2qynX`
