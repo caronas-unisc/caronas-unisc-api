@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
 
+  def create_session
+    Session.create(user: self)
+  end
+
   def as_json(options = {})
     super(except: [:password_digest])
   end
