@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
     unless @current_user
       token = request.headers["Authentication-Token"]
       session = Session.find_by(token: token)
-      byebug
       @current_user = session.user if session
     end
 
