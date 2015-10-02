@@ -8,7 +8,7 @@ module Api
           session = user.create_session
           render json: session
         else
-          render text: 'Access Denied', status: :unauthorized
+          render text: t(:access_denied), status: :unauthorized
         end
       end
 
