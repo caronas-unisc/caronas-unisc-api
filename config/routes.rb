@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
-      resources :sessions, only: [:create, :destroy]
+
+      resources :sessions, only: [:create, :destroy] do
+        collection do
+          get 'info'
+        end
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

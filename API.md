@@ -32,3 +32,8 @@ Para fazer login.
 Ao fazer logout pelo app, chamar essa URL para excluir a sessão do servidor.
 
 `curl -X DELETE https://caronas-unisc.herokuapp.com/api/v1/sessions/WkEiGHYJwHpc2DuD4Wu2qynX`
+
+##### INFO
+Para ler informações do usuário logado. É preciso passar o token do usuário logado via header.
+
+`curl -H "Authentication-Token: KTjii5ZzwU24BNmdj5QAc7fJ" -X GET https://caronas-unisc.herokuapp.com/api/v1/sessions/info`

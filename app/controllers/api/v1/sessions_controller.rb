@@ -12,6 +12,14 @@ module Api
         end
       end
 
+      def info
+        if current_user
+          render json: current_user
+        else
+          head :no_content
+        end
+      end
+
       def destroy
         @session = Session.find_by(token: params[:id])
         @session.destroy
