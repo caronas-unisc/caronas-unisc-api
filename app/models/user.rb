@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(except: [:password_digest])
+    super(only: [:name, :email, :ride_intention])
   end
 end
