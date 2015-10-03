@@ -27,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'has_secure_token'
 gem 'simple_form'
+gem 'rails_12factor'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
