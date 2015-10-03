@@ -4,7 +4,7 @@ module Api
       def create
         user = User.find_by_email(params[:email]) if params[:email]
         user.send_password_reset if user
-        head :no_content
+        render json: { status: "ok" }
       end
     end
   end
