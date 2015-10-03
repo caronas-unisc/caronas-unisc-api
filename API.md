@@ -3,7 +3,9 @@
 ##### CREATE
 Usado para cadastrar novos usuários.
 
-`curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123"}}' https://caronas-unisc.herokuapp.com/api/v1/users`
+`curl -H "Content-Type: application/json" -X POST -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123","ride_intention":"give_ride"}}' https://caronas-unisc.herokuapp.com/api/v1/users`
+
+O valor de `ride_intention` pode ser `give_ride`, `receive_ride` ou `give_and_receive_ride`. Se não for enviado, será cadastrado com o valor `give_and_receive_ride`.
 
 ##### LIST
 `curl -X GET https://caronas-unisc.herokuapp.com/api/v1/users`
