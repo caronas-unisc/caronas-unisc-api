@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include HttpAcceptLanguage::AutoLocale
+
   def current_user
     unless @current_user
       token = request.headers["Authentication-Token"]

@@ -21,3 +21,6 @@
 
 en:
   access_denied: "Access Denied"
+  reset_password: "Reset password"
+  password_reset_expired: "This password reset request expired. Ask for the password reset again and then try again."
+  password_reset_success: "Your password has been reset successfully. Now you can log in using the application. :)"

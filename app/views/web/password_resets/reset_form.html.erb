@@ -1,5 +1,5 @@
 <%= simple_form_for @user, url: web_password_reset_form_path(@user.password_reset_token) do |f| %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
-  <%= f.submit 'Redefinir senha', class: 'btn btn-success' %>
+  <%= f.submit t(:reset_password), class: 'btn btn-success' %>
 <% end %>

@@ -1,0 +1,12 @@
+pt-BR:
+  access_denied: "Acesso negado"
+  reset_password: "Redefinir senha"
+  password_reset_expired: "Este pedido de recuperação de senha expirou. Peça uma nova recuperação de senha e tente novamente."
+  password_reset_success: "Sua senha foi resetada com sucesso. Agora você já pode abrir o aplicativo e fazer login. :)"
+  activerecord:
+    models:
+      user: 'Usuário'
+    attributes:
+      user:
+        password: "Senha"
+        password_confirmation: "Confirme a senha"
