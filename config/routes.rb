@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
+      resources :password_resets, only: [:create]
 
       resources :sessions, only: [:create, :destroy] do
         collection do
@@ -10,6 +11,12 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :web do
+    get '/forgot/:token' => 'password_resets#reset_form', as: 'password_reset_form'
+    patch '/forgot/:token' => 'password_resets#reset_password'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

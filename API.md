@@ -23,7 +23,12 @@ O valor de `ride_intention` pode ser `give_ride`, `receive_ride` ou `give_and_re
 - permissionar os métodos READ/UPDATE/DELETE para só o próprio usuário poder chamar.
 - remover o método LIST
 
+### Password resets
+
 ### Sessions
+Usado para iniciar recuperação de senha.
+
+`curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com"}' http://localhost:3000/api/v1/password_resets`
 
 ##### CREATE
 Para fazer login.

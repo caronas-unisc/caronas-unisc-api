@@ -10,6 +10,120 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require normalize
  *= require_tree .
  *= require_self
  */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: #eee;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.header {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 30px;
+}
+
+.header h1 {
+	margin: 0;
+	padding: 10px 0 20px 0;
+}
+
+.container {
+	width: 600px;
+	background: #fff;
+	margin: 40px auto 0 auto;
+	padding: 40px;
+	padding-top: 20px;
+	border-top: 8px solid #069;
+}
+
+.container p {
+	line-height: 180%;
+}
+
+.container p:last-child {
+	margin-bottom: 0;
+}
+
+label {
+	display: block;
+	margin-bottom: 6px;
+}
+
+form div {
+	margin-bottom: 20px;
+}
+
+input[type=text],
+input[type=password] {
+	background: #fff;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	padding: 6px 10px;
+}
+
+input[type=submit] {
+	background: #ddd;
+	border: 0;
+	font-size: 14px;
+	font-weight: 500;
+	outline: 0;
+	text-transform: uppercase;
+	transition: background .2s ease-in-out;
+	padding: 8px 12px;
+	box-shadow: 0 1px 1px 0 #ccc;
+	border-radius: 3px;
+	padding: 8px 20px;
+}
+
+input[type=submit]:active {
+	background: #ccc;
+}
+
+.error {
+	color: #c00;
+	padding-left: 10px;
+}
+
+@media (max-width: 768px) {
+	body {
+		background: #fff;
+	}
+
+	.header {
+		margin-bottom: 20px;
+	}
+
+	.header h1 {
+		font-size: 20px;
+	}
+
+	input[type=text],
+	input[type=password] {
+		display: block;
+		width: 100%;
+	}
+
+	input[type=submit] {
+		display: block;
+		width: 100%;
+	}
+
+	.error {
+		display: block;
+		padding-left: 0;
+		padding-top: 10px;
+	}
+
+	.container {
+		width: auto;
+		margin-top: 0;
+		padding: 20px;
+	}
+}
