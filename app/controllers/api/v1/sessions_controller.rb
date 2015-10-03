@@ -6,7 +6,7 @@ module Api
 
         if user && user.authenticate(params[:password])
           session = user.create_session
-          render json: session
+          render json: { user: session.user, session: session }
         else
           render text: t(:access_denied), status: :unauthorized
         end
