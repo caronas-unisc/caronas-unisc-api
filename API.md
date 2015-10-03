@@ -28,7 +28,7 @@ O valor de `ride_intention` pode ser `give_ride`, `receive_ride` ou `give_and_re
 ### Sessions
 Usado para iniciar recuperação de senha.
 
-`curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com"}' http://localhost:3000/api/v1/password_resets`
+`curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com"}' https://caronas-unisc.herokuapp.com/api/v1/password_resets`
 
 ##### CREATE
 Para fazer login.
