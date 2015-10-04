@@ -13,7 +13,7 @@ O valor de `ride_intention` pode ser `give_ride`, `receive_ride` ou `give_and_re
 ##### UPDATE
 Para atualizar informações do usuário logado. É preciso passar o token do usuário logado via header.
 
-`curl -H "Authentication-Token: MdCTNVZDgs1wskn9x4o2NXmm" -H "Content-Type: application/json" -X PATCH -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123"}}' https://caronas-unisc.herokuapp.com/api/v1/users/update`
+`curl -H "Authentication-Token: MdCTNVZDgs1wskn9x4o2NXmm" -H "Content-Type: application/json" -X PATCH -d '{"user":{"name":"Guilherme","password":"abc123","intention":"give_ride"}}' https://caronas-unisc.herokuapp.com/api/v1/users/update`
 
 TO-DO: Deixar essa URL mais "RESTful", usando algo como `PATCH /me` - http://blog.2partsmagic.com/restful-uri-design/
 
