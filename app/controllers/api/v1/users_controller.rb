@@ -14,7 +14,7 @@ module Api
       end
 
       def create
-        user = User.new(user_params)
+        user = User.new(create_user_params)
 
         if user.save
           render json: { user: user, session: user.create_session }
@@ -25,7 +25,7 @@ module Api
 
       def update
         user = current_user
-        if user.update(user_params)
+        if user.update(update_user_params)
           render json: user
         else
           render json: user.errors, status: :unprocessable_entity
@@ -34,8 +34,12 @@ module Api
 
       private
 
-      def user_params
+      def create_user_params
         params.require(:user).permit(:name, :email, :password, :ride_intention)
+      end
+
+      def update_user_params
+        params.require(:user).permit(:name, :password, :ride_intention)
       end
     end
   end

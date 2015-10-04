@@ -15,7 +15,7 @@ Para atualizar informações do usuário logado. É preciso passar o token do us
 
 `curl -H "Authentication-Token: MdCTNVZDgs1wskn9x4o2NXmm" -H "Content-Type: application/json" -X PATCH -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123"}}' https://caronas-unisc.herokuapp.com/api/v1/users/update`
 
-TO-DO: não deixar atualizar email
+TO-DO: Deixar essa URL mais "RESTful", usando algo como `PATCH /me` - http://blog.2partsmagic.com/restful-uri-design/
 
 ### Password resets
 
