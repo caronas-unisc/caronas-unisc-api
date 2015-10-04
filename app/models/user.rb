@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(only: [:name, :email, :ride_intention])
+    super(only: [:id, :name, :email, :ride_intention, :created_at])
   end
 end
