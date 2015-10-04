@@ -19,10 +19,14 @@ TO-DO: Deixar essa URL mais "RESTful", usando algo como `PATCH /me` - http://blo
 
 ### Password resets
 
-### Sessions
-Usado para iniciar recuperação de senha.
+#### CREATE
+Usado para iniciar redefinição de senha, enviando e-mail para usuário.
 
 `curl -H "Content-Type: application/json" -X POST -d '{"email":"ghsehn@gmail.com"}' https://caronas-unisc.herokuapp.com/api/v1/password_resets`
+
+Os demais passos de redefinição de senha estão disponíveis apenas na interface web.
+
+### Sessions
 
 ##### CREATE
 Para fazer login.
