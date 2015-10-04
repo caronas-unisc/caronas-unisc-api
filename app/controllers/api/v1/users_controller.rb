@@ -1,6 +1,8 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      before_filter :check_session, only: [:update]
+
       def index
         users = User.all
         render json: users
@@ -22,8 +24,7 @@ module Api
       end
 
       def update
-        user = User.find(params[:id])
-
+        user = current_user
         if user.update(user_params)
           render json: user
         else

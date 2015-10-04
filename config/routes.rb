@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :users, except: [:destroy]
-      resources :password_resets, only: [:create]
+      resources :users, except: [:update, :destroy] do
+        collection do
+          patch 'update'
+        end
+      end
 
       resources :sessions, only: [:create, :destroy] do
         collection do
           get 'info'
         end
       end
+
+      resources :password_resets, only: [:create]
     end
   end
 

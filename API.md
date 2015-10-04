@@ -7,21 +7,15 @@ Usado para cadastrar novos usuários.
 
 O valor de `ride_intention` pode ser `give_ride`, `receive_ride` ou `give_and_receive_ride`. Se não for enviado, será cadastrado com o valor `give_and_receive_ride`.
 
-##### LIST
-`curl -X GET https://caronas-unisc.herokuapp.com/api/v1/users`
-
 ##### READ
 `curl -X GET https://caronas-unisc.herokuapp.com/api/v1/users/1`
 
 ##### UPDATE
-`curl -H "Content-Type: application/json" -X PUT -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123"}}' https://caronas-unisc.herokuapp.com/api/v1/users/1`
+Para atualizar informações do usuário logado. É preciso passar o token do usuário logado via header.
 
-##### DELETE
-`curl -X DELETE https://caronas-unisc.herokuapp.com/api/v1/users/1`
+`curl -H "Authentication-Token: MdCTNVZDgs1wskn9x4o2NXmm" -H "Content-Type: application/json" -X PATCH -d '{"user":{"name":"Guilherme","email":"ghsehn@gmail.com","password":"abc123"}}' https://caronas-unisc.herokuapp.com/api/v1/users/update`
 
-##### TO-DO:
-- permissionar os métodos READ/UPDATE/DELETE para só o próprio usuário poder chamar.
-- remover o método LIST
+TO-DO: não deixar atualizar email
 
 ### Password resets
 

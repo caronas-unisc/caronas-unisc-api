@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
 
     @current_user
   end
+
+  private
+
+  def check_session
+    if current_user.nil?
+      render text: t(:access_denied), status: :unauthorized
+    end
+  end
 end
