@@ -79,6 +79,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {
     protocol: 'https',
-    host: 'caronas-unisc.heroku.com'
+    host: 'caronas-unisc.herokuapp.com'
   }
 end
