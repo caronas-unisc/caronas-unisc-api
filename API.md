@@ -42,3 +42,12 @@ Ao fazer logout pelo app, chamar essa URL para excluir a sessão do servidor.
 Para ler informações do usuário logado. É preciso passar o token do usuário logado via header.
 
 `curl -H "Authentication-Token: KTjii5ZzwU24BNmdj5QAc7fJ" -X GET https://caronas-unisc.herokuapp.com/api/v1/sessions/info`
+
+### Ride availabilities
+
+#### CREATE
+Usado para criar uma disponibilidade de carona, que pode ser para receber carona ou dar carona.
+
+#### CREATE/UPDATE
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":{"availability_type":"receive"}}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/morning`

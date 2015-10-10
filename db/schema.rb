@@ -11,21 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003194953) do
+ActiveRecord::Schema.define(version: 20151010200912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "ride_availabilities", force: :cascade do |t|
+    t.integer  "user_id",                     null: false
+    t.integer  "availability_type",           null: false
+    t.date     "date",                        null: false
+    t.integer  "period",                      null: false
+    t.text     "starting_location_address"
+    t.float    "starting_location_latitude"
+    t.float    "starting_location_longitude"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "token"
+    t.string   "user_id",    null: false
+    t.string   "token",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",                               null: false
+    t.string   "email",                              null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.string   "password_digest"

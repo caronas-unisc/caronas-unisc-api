@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include PasswordReset
 
+  has_many :ride_availabilities
+
   has_secure_password
 
   enum ride_intention: [:give_and_receive_ride, :give_ride, :receive_ride]

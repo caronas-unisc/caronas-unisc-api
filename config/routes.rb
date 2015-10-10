@@ -14,6 +14,12 @@ Rails.application.routes.draw do
       end
 
       resources :password_resets, only: [:create]
+
+      ride_availabilities_constraints = { date: /\d{4}-\d{2}-\d{2}/, period: '(morning|afternoon|night)' }
+      put 'ride_availabilities/:date/:period' => 'ride_availabilities#update',
+        constraints: ride_availabilities_constraints
+      delete 'ride_availabilities/:date/:period' => 'ride_availabilities#destroy',
+        constraints: ride_availabilities_constraints
     end
   end
 
