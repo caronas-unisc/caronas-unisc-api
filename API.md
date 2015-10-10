@@ -58,9 +58,11 @@ Parâmetros da URL que identificam a data e período da disponibilidade.
 | date   | Data da disponibilidade, em formato YYYY-MM-DD (exemplo: `2015-05-10`) |
 | period | Período da disponibilidade (`morning`, `afternoon` ou `night`) |
 
-Exemplo: `https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/night`
+Exemplo de URL montada: `https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/night`
 
 ##### Corpo
+Parâmetros a serem enviados no corpo da request em JSON. Eles ficam dentro da key `ride_availability` do objeto JSON.
+
 | Nome | Descrição |
 | ---- | --------- |
 | ride_availability | Se o usuário quer dar ou receber carona nesse dia e período. Valores possíveis: `give` e `receive` |
@@ -68,9 +70,7 @@ Exemplo: `https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05
 | starting_location_latitude | Latitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 | starting_location_longitude | Longitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 
-Estes valores devem ser enviados como JSON no corpo da request. Eles ficam dentro da key `ride_availability` do objeto JSON.
-
-Exemplo:
+Exemplo de JSON montado:
 
 `{"ride_availability":{"availability_type":"receive","starting_location_address":"Rua Marechal Floriano 50, Santa Cruz do Sul - RS","starting_location_latitude":-29.714920,"starting_location_longitude":-52.427807}`
 
