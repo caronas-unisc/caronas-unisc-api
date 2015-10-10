@@ -25,7 +25,7 @@ module Api
         @ride_availability = RideAvailability.find_or_initialize_by(
           user: current_user,
           date: date,
-          period: period
+          period: RideAvailability.periods[period]
         )
       end
 
