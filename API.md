@@ -45,9 +45,33 @@ Para ler informações do usuário logado. É preciso passar o token do usuário
 
 ### Ride availabilities
 
-#### CREATE
+#### CREATE/UPDATE
 Usado para criar uma disponibilidade de carona, que pode ser para receber carona ou dar carona.
 
-#### CREATE/UPDATE
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":**campos**}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/:date/:period`
 
-`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":{"availability_type":"receive"}}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/morning`
+##### Parâmetros
+Parâmetros da URL que identificam a data e período da disponibilidade.
+
+| Nome   | Descrição |
+| ------ | --------- |
+| date   | Data da disponibilidade, em formato YYYY-MM-DD (exemplo: `2015-05-10`) |
+| period | Período da disponibilidade (`morning`, `afternoon` ou `night`) |
+
+Exemplo: `https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/night`
+
+##### Corpo
+| Nome | Descrição |
+| ---- | --------- |
+| ride_availability | Se o usuário quer dar ou receber carona nesse dia e período. Valores possíveis: `give` e `receive` |
+| starting_location_address | String com endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
+| starting_location_latitude | Latitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
+| starting_location_longitude | Longitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
+
+Estes valores devem ser enviados como JSON no corpo da request. Eles ficam dentro da key `ride_availability` do objeto JSON.
+
+Exemplo:
+
+`{"ride_availability":{"availability_type":"receive","starting_location_address":"Rua Marechal Floriano 50, Santa Cruz do Sul - RS","starting_location_latitude":-29.714920,"starting_location_longitude":-52.427807}`
+
+TO-DO: Criar os campos para quando usuário quer dar carona (quantidade de vagas no carro e rota)
