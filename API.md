@@ -72,7 +72,7 @@ Parâmetros a serem enviados no corpo da request em JSON. Eles ficam dentro da k
 
 Exemplo de requisição final montada:
 
-curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":{"availability_type":"receive","starting_location_address":"Rua Marechal Floriano 50, Santa Cruz do Sul - RS","starting_location_latitude":-29.714920,"starting_location_longitude":-52.427807}}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/night
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":{"availability_type":"receive","starting_location_address":"Rua Marechal Floriano 50, Santa Cruz do Sul - RS","starting_location_latitude":-29.714920,"starting_location_longitude":-52.427807}}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/2015-05-10/night`
 
 TO-DO: Criar os campos para quando usuário quer dar carona (quantidade de vagas no carro e rota)
 
