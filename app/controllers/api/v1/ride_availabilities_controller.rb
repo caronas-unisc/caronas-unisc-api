@@ -32,7 +32,7 @@ module Api
       def ride_availability_params
         params.require(:ride_availability).permit(:availability_type,
           :starting_location_address, :starting_location_latitude,
-          :starting_location_longitude)
+          :starting_location_longitude, :available_places_in_car)
       end
 
       def date

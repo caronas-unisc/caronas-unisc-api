@@ -69,6 +69,7 @@ Parâmetros a serem enviados no corpo da request em JSON. Eles ficam dentro da k
 | starting_location_address | String com endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 | starting_location_latitude | Latitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 | starting_location_longitude | Longitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
+| available_places_in_car | Quantidade de locais disponíveis no carro (só deve ser preenchido se `ride_availability` = `give`) |
 
 Exemplo de requisição final montada:
 
