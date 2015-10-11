@@ -11,4 +11,5 @@ class RideAvailability < ActiveRecord::Base
   validates :starting_location_address, presence: true, if: :receive?
   validates :starting_location_latitude, presence: true, if: :receive?
   validates :starting_location_longitude, presence: true, if: :receive?
+  validates :available_places_in_car, presence: true, if: :give?
 end
