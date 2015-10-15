@@ -48,7 +48,7 @@ Para ler informações do usuário logado. É preciso passar o token do usuário
 #### CREATE/UPDATE
 Usado para criar uma disponibilidade de carona, que pode ser para receber carona ou dar carona.
 
-`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":**campos**}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/:date/:period`
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PUT -d '{"ride_availability":**corpo**}' https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/:date/:period`
 
 ##### Parâmetros
 Parâmetros da URL que identificam a data e período da disponibilidade.
@@ -65,7 +65,7 @@ Parâmetros a serem enviados no corpo da request em JSON. Eles ficam dentro da k
 
 | Nome | Descrição |
 | ---- | --------- |
-| ride_availability | Se o usuário quer dar ou receber carona nesse dia e período. Valores possíveis: `give` e `receive` |
+| availability_type | Se o usuário quer dar ou receber carona nesse dia e período. Valores possíveis: `give` e `receive` |
 | starting_location_address | String com endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 | starting_location_latitude | Latitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
 | starting_location_longitude | Longitude do endereço de partida (só deve ser preenchido se `ride_availability` = `receive`) |
