@@ -4,6 +4,11 @@ module Api
       before_action :check_session
       before_action :set_ride_availability
 
+      def show_for_week
+        ride_availabilities = RideAvailability.get_for_week(current_user, date)
+        render json: ride_availabilities
+      end
+
       def update
         @ride_availability.assign_attributes(ride_availability_params)
 

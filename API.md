@@ -81,3 +81,10 @@ TO-DO: Criar os campos para quando usuário quer dar carona (quantidade de vagas
 Usado quando usuário cancela uma disponibilidade de carona para uma data/período.
 
 `curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X DELETE https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/:date/:period`
+
+#### GET
+Permite buscar as disponibilidades de carona do usuário logado para uma determinada semana.
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X GET https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/week/2015-10-15`
+
+Passe como parâmetro uma data que faça parte da semana a ser consultada. No exemplo acima, ao passar a data 15/10/2015, o sistema irá retornar as caronas do dia 11/10/2015 (domingo, início da semana) até 17/10/2015 (sábado, fim da semana).
