@@ -8,7 +8,7 @@
 1. Rodar o comando `bundle install` (instala as gems usadas no projeto)
 2. Rodar o comando `rake db:create` (cria o banco de dados de desenvolvimento)
 3. Rodar o comando `rake db:schema:load` (cria as tabelas do banco de dados)
-4. Confiugurar remoto do heroku no git com `heroku git:remote -a caronas-unisc` (certificar-se antes de que está logado usando `heroku login`)
+4. Configurar remoto do heroku no git com `heroku git:remote -a caronas-unisc` (certificar-se antes de que está logado usando `heroku login`)
 5. Iniciar o servidor com `rails s`
 
 ### Configurando servidor de e-mail
