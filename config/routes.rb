@@ -1,25 +1,34 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      # Users
       resources :users, except: [:update, :destroy] do
         collection do
           patch 'update'
         end
       end
 
+      # Sessions
       resources :sessions, only: [:create, :destroy] do
         collection do
           get 'info'
         end
       end
 
+      # Password resets
       resources :password_resets, only: [:create]
 
+      # Ride availabilities
       ride_availabilities_constraints = { date: /\d{4}-\d{2}-\d{2}/, period: '(morning|afternoon|night)' }
+      
       get 'ride_availabilities/week/:date' => 'ride_availabilities#show_for_week',
         constraints: ride_availabilities_constraints
+      
+      patch 'ride_availabilities/week/repeat' => 'ride_availabilities#repeat_last_week'
+
       put 'ride_availabilities/:date/:period' => 'ride_availabilities#update',
         constraints: ride_availabilities_constraints
+
       delete 'ride_availabilities/:date/:period' => 'ride_availabilities#destroy',
         constraints: ride_availabilities_constraints
     end

@@ -2,10 +2,15 @@ module Api
   module V1
     class RideAvailabilitiesController < ApplicationController
       before_action :check_session
-      before_action :set_ride_availability
+      before_action :set_ride_availability, only: [:update, :destroy]
 
       def show_for_week
         ride_availabilities = RideAvailability.get_for_week(current_user, date)
+        render json: ride_availabilities
+      end
+
+      def repeat_last_week
+        ride_availabilities = RideAvailability.repeat_last_week!(current_user)
         render json: ride_availabilities
       end
 

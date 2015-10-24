@@ -88,3 +88,12 @@ Permite buscar as disponibilidades de carona do usuário logado para uma determi
 `curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X GET https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/week/2015-10-15`
 
 Passe como parâmetro uma data que faça parte da semana a ser consultada. No exemplo acima, ao passar a data 15/10/2015, o sistema irá retornar as caronas do dia 11/10/2015 (domingo, início da semana) até 17/10/2015 (sábado, fim da semana).
+
+#### REPEAT
+Repetir as disponibilidades de carona do usuário logado para a semana passada.
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X PATCH https://caronas-unisc.herokuapp.com/api/v1/ride_availabilities/week/repeat`
+
+A chamada trará na resposta as disponibilidades de carona criadas para a semana atual.
+
+Obs.: Se já houverem disponibilidades de carona definidas para a semana atual, estas serão excluídas.
