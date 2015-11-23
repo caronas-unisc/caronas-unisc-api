@@ -97,3 +97,86 @@ Repetir as disponibilidades de carona do usuário logado para a semana passada.
 A chamada trará na resposta as disponibilidades de carona criadas para a semana atual.
 
 Obs.: Se já houverem disponibilidades de carona definidas para a semana atual, estas serão excluídas.
+
+### Rides
+
+#### MATCHES
+Busca matches para o usuário logado atualmente. Este endpoint retorna um objeto JSON com duas seções: "give" e "receive".
+
+Na seção "receive", irão aparecer as disponibilidades das pessoas que podem dar carona para o usuário logado.
+Ele irá casar todas as pessoas na situação oposta. Por exemplo: usuário atual quer receber carona na segunda e terça à noite.
+Nesse caso, na seção "receive" serão listados usuários que podem dar carona na segunda e terça de noite, caso disponíveis.
+
+Na seção "give", irão aparecer as pessoas que pediram carona para o usuário logado atual.
+Ou seja, se o usuário logado quiser dar carona na quarta e sexta à noite, nessa seção aparecerão usuários que voluntariamente
+pediram ao usuário atual uma carona nessas datas/períodos. Não irão aparecer matches em que usuários não pediram a carona.
+
+Para chamar este método, usar:
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X GET https://caronas-unisc.herokuapp.com/api/v1/rides/matches`
+
+Exemplo de retorno:
+
+```javascript
+{
+	"receive": [
+		{
+			"availability_id": 1,
+			"period": "night",
+			"date": "2015-11-23", // segunda-feira
+			"user_name": "João",
+			"remaining_places_in_car": 1,
+			"ride": null // ride é null nesse registro porque o usuário atual não pediu carona para o Fulano
+		},
+		{
+			"availability_id": 2,
+			"period": "night",
+			"date": "2015-11-23", // segunda-feira
+			"user_name": "Felipe",
+			"remaining_places_in_car": 3,
+			"ride": { // usuário atual pediu carona para o Felipe
+				"id": 5,
+				"status": "pending" // a carona requisitada está pendente (o Felipe, outro usuário, precisa aprovar)
+			}
+		},
+		{
+			"availability_id": 3,
+			"period": "night",
+			"date": "2015-11-24", // terça-feira
+			"user_name": "Felipe",
+			"remaining_places_in_car": 2,
+			"ride": { // usuário atual pediu carona para o Felipe
+				"id": 6,
+				"status": "accepted" // o Felipe (outro usuário) aceitou dar a carona
+			}
+		},
+	],
+	"give": [
+		{
+			"availability_id": 4,
+			"period": "night",
+			"date": "2015-11-25", // quarta-feira
+			"user_name": "André", // o André pediu carona para o usuário atual
+			"ride": {
+				"id": 7,
+				"status": "pending" // o usuário atual ainda não aceitou o pedido de carona do André
+			}
+		}
+	]
+}
+```
+
+#### CREATE
+Chamar esse endpoint para pedir carona. É necessário passar o ID da availability da pessoa que quer dar carona no corpo. Por exemplo,
+se o usuário atual quer pedir carona para o João na segunda-feira (availability_id 1), chamar:
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X POST -d '{"ride_availability_id":1}' https://caronas-unisc.herokuapp.com/api/v1/rides`
+
+Ao fazer isso, será criada uma "ride" no sistema com status "pending", relacionada à ride availability de receber carona do usuário atual, e à
+ride availability de dar carona do João.
+
+#### UPDATE
+Chamar esse endpoint para aprovar um pedido de carona feito por outra pessoa. É necessário passar o ID da carona na URL e o status no corpo. Por exemplo,
+se o usuário atual quer aceitar o pedido de carona do André para quarta à noite (ride id = 7), deve chamar:
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PATCH -d '{"ride":{"status":"accepted"}}' https://caronas-unisc.herokuapp.com/api/v1/rides/7`

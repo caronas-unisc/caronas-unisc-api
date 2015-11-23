@@ -8,6 +8,7 @@ class Match
 
   def as_json(options = {})
     json = {
+      availability_id: @availability.id,
       period: @availability.period,
       date: @availability.date,
       user_name: @availability.user.name,
