@@ -1,4 +1,6 @@
 class RideAvailability < ActiveRecord::Base
+  has_many :giver_rides, class_name: 'Ride', foreign_key: 'giver_availability_id'
+  has_many :receiver_rides, class_name: 'Ride', foreign_key: 'receiver_availability_id'
   belongs_to :user
 
   enum availability_type: [:give, :receive]
@@ -12,6 +14,23 @@ class RideAvailability < ActiveRecord::Base
   validates :starting_location_latitude, presence: true, if: :receive?
   validates :starting_location_longitude, presence: true, if: :receive?
   validates :available_places_in_car, presence: true, if: :give?
+
+  def remaining_places_in_car
+    available_places_in_car - giver_rides.accepted.count if give?
+  end
+
+  def create_pending_ride_for!(user)
+    receiver_availability = user.ride_availabilities.receive.find_by!(
+      period: self.class.periods[period],
+      date: date
+    )
+
+    Ride.create!(
+      giver_availability: self,
+      receiver_availability: receiver_availability,
+      status: Ride.statuses[:pending]
+    )
+  end
 
   def self.get_for_week(user, date)
     start_date = date.at_beginning_of_week(:sunday)

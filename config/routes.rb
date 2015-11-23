@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       # Password resets
       resources :password_resets, only: [:create]
 
+      # Matches
+      get 'rides/matches' => 'rides#matches'
+      post 'rides' => 'rides#create'
+      patch 'rides/:id' => 'rides#update'
+
       # Ride availabilities
       ride_availabilities_constraints = { date: /\d{4}-\d{2}-\d{2}/, period: '(morning|afternoon|night)' }
       
