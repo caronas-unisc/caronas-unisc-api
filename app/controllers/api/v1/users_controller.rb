@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_filter :check_session, only: [:update]
+      before_action :check_session, only: [:update]
 
       def index
         users = User.all

@@ -1,6 +1,8 @@
 module Api
   module V1
     class RidesController < ApplicationController
+      before_action :check_session
+
       def matches
         match_finder = MatchFinder.new(RideAvailability)
         receive_matches = match_finder.find_receive_matches_for_week(current_user, Date.current)

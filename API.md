@@ -180,3 +180,21 @@ Chamar esse endpoint para aprovar um pedido de carona feito por outra pessoa. É
 se o usuário atual quer aceitar o pedido de carona do André para quarta à noite (ride id = 7), deve chamar:
 
 `curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PATCH -d '{"ride":{"status":"accepted"}}' https://caronas-unisc.herokuapp.com/api/v1/rides/7`
+
+### Chat
+
+#### LIST
+
+Para listar as mensagens:
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X GET https://caronas-unisc.herokuapp.com/api/v1/rides/:ride_id/messages`
+
+Onde `:ride_id` é o ID da carona.
+
+Opcionalmente é possível passar o parâmetro `last_id` como query string, para buscar apenas as mensagens com ID acima do especificado. Exemplo: `https://caronas-unisc.herokuapp.com/api/v1/rides/:ride_id/messages?last_id=10`
+
+#### CREATE
+
+Para enviar mensagem no chat:
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X POST -d '{"message":{"body":"olar"}}' https://caronas-unisc.herokuapp.com/api/v1/rides/:ride_id/messages`

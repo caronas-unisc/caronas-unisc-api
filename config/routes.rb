@@ -20,6 +20,11 @@ Rails.application.routes.draw do
 
       # Matches
       get 'rides/matches' => 'rides#matches'
+
+      resources :rides, only: [:create, :update] do
+        resources :messages, only: [:index, :create]
+      end
+
       post 'rides' => 'rides#create'
       patch 'rides/:id' => 'rides#update'
 
