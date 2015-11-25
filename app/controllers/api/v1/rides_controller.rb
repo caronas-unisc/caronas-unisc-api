@@ -27,7 +27,7 @@ module Api
       end
 
       def update
-        ride = Ride.where(giver_availability: { user: current_user }).find(params[:id])
+        ride = Ride.find(params[:id])
         if ride.update(update_params)
           render json: ride
         else
