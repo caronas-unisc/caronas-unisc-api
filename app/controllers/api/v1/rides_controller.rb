@@ -11,6 +11,15 @@ module Api
         render json: { receive: receive_matches, give: give_matches }
       end
 
+      def show
+        ride = Ride.find(params[:id])
+        render json: {
+          ride: ride,
+          giver_availability: ride.giver_availability,
+          receiver_availability: ride.receiver_availability
+        }
+      end
+
       def create
         ride_availability = RideAvailability.give.find(params[:ride_availability_id])
         ride = ride_availability.create_pending_ride_for!(current_user)

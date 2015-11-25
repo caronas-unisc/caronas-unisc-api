@@ -181,6 +181,14 @@ se o usuário atual quer aceitar o pedido de carona do André para quarta à noi
 
 `curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -H "Content-Type: application/json" -X PATCH -d '{"ride":{"status":"accepted"}}' https://caronas-unisc.herokuapp.com/api/v1/rides/7`
 
+#### READ
+
+Para ver os dados de uma carona.
+
+`curl -H "Authentication-Token: oNBBAK6kktjSvmx2tn4mvYnX" -X GET https://caronas-unisc.herokuapp.com/api/v1/rides/:ride_id`
+
+Onde `:ride_id` é o ID da carona.
+
 ### Chat
 
 #### LIST

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       end
 
       post 'rides' => 'rides#create'
+      get 'rides/:id' => 'rides#show'
       patch 'rides/:id' => 'rides#update'
 
       # Ride availabilities
