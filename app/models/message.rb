@@ -4,4 +4,8 @@ class Message < ActiveRecord::Base
 
   validates :body, presence: true
   validates :user, presence: true
+
+  def as_json(options = {})
+    super(include: { user: { only: [:id, :name] } })
+  end
 end

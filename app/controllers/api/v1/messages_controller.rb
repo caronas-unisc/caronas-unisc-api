@@ -4,7 +4,7 @@ module Api
       before_action :check_session
 
       def index
-        messages = Ride.find(ride_id).messages.where('id > ?', last_message_id)
+        messages = Ride.find(ride_id).messages.includes(:user).where('id > ?', last_message_id)
         render json: messages
       end
 
