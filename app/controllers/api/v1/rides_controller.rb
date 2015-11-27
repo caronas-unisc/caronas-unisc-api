@@ -15,8 +15,8 @@ module Api
         ride = Ride.find(params[:id])
         render json: {
           ride: ride,
-          giver_availability: ride.giver_availability.includes(:user),
-          receiver_availability: ride.receiver_availability.includes(:user)
+          giver_availability: ride.giver_availability,
+          receiver_availability: ride.receiver_availability
         }
       end
 
