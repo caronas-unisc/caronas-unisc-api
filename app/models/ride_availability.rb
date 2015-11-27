@@ -32,6 +32,10 @@ class RideAvailability < ActiveRecord::Base
     )
   end
 
+  def as_json(options = {})
+    super(include: { user: { only: [:id, :name] } })
+  end
+
   def self.get_for_week(user, date)
     start_date = date.at_beginning_of_week(:sunday)
     end_date = date.at_end_of_week(:sunday)
