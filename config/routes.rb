@@ -2,11 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Users
-      resources :users, except: [:update, :destroy] do
-        collection do
-          patch 'update'
-        end
-      end
+      resources :users, except: [:destroy]
 
       # Sessions
       resources :sessions, only: [:create, :destroy] do
@@ -28,6 +24,7 @@ Rails.application.routes.draw do
       post 'rides' => 'rides#create'
       get 'rides/:id' => 'rides#show'
       patch 'rides/:id' => 'rides#update'
+      put 'rides/:id' => 'rides#update'
 
       # Ride availabilities
       ride_availabilities_constraints = { date: /\d{4}-\d{2}-\d{2}/, period: '(morning|afternoon|night)' }
@@ -36,6 +33,7 @@ Rails.application.routes.draw do
         constraints: ride_availabilities_constraints
       
       patch 'ride_availabilities/week/repeat' => 'ride_availabilities#repeat_last_week'
+      put 'ride_availabilities/week/repeat' => 'ride_availabilities#repeat_last_week'
 
       put 'ride_availabilities/:date/:period' => 'ride_availabilities#update',
         constraints: ride_availabilities_constraints
@@ -48,6 +46,7 @@ Rails.application.routes.draw do
   namespace :web do
     get '/forgot/:token' => 'password_resets#reset_form', as: 'password_reset_form'
     patch '/forgot/:token' => 'password_resets#reset_password'
+    put '/forgot/:token' => 'password_resets#reset_password'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
