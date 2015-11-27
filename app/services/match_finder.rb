@@ -4,7 +4,7 @@ class MatchFinder
   end
 
   def find_give_matches_for_week(user, date)
-    give_availabilities = user.ride_availabilities.give
+    give_availabilities = user.ride_availabilities.give.order('date ASC, period ASC')
     matches = []
 
     give_availabilities.each do |availability|
@@ -22,7 +22,7 @@ class MatchFinder
 
     if requests.any?
       query = generate_date_and_period_query(requests)
-      givers_availabilities = @availability_model.where(*query).give.includes(:user)
+      givers_availabilities = @availability_model.where(*query).give.includes(:user).order('date ASC, period ASC')
     
       givers_availabilities.each do |availability|
         my_ride_availability = user.ride_availabilities.find_by(date: availability.date, period: RideAvailability.periods[availability.period])
