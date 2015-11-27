@@ -25,11 +25,9 @@ class RideAvailability < ActiveRecord::Base
       date: date
     )
 
-    Ride.create!(
-      giver_availability: self,
-      receiver_availability: receiver_availability,
-      status: Ride.statuses[:pending]
-    )
+    ride = Ride.find_or_create_by(giver_availability: self, receiver_availability: receiver_availability) do |ride|
+      ride.status = Ride.statuses[:pending]
+    end
   end
 
   def as_json(options = {})

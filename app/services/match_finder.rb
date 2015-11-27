@@ -17,14 +17,16 @@ class MatchFinder
   end
 
   def find_receive_matches_for_week(user, date)
-    requests = @availability_model.get_for_week(user, date).receive
-    query = generate_date_and_period_query(requests)
-    givers_availabilities = @availability_model.where(*query).give.includes(:user)
     matches = []
+    requests = @availability_model.get_for_week(user, date).receive
 
-    givers_availabilities.each do |availability|
-      rides = availability.giver_rides.joins(:receiver_availability).where(ride_availabilities: { user_id: user.id })
-      rides.each do |ride|
+    if requests.any?
+      query = generate_date_and_period_query(requests)
+      givers_availabilities = @availability_model.where(*query).give.includes(:user)
+    
+      givers_availabilities.each do |availability|
+        my_ride_availability = user.ride_availabilities.find_by(date: availability.date, period: RideAvailability.periods[availability.period])
+        ride = Ride.find_by(receiver_availability: my_ride_availability)
         matches << Match.new(availability, ride)
       end
     end
