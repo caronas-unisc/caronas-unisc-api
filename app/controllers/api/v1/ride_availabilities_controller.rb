@@ -5,7 +5,7 @@ module Api
       before_action :set_ride_availability, only: [:update, :destroy]
 
       def show_for_week
-        ride_availabilities = RideAvailability.get_for_week(current_user, date)
+        ride_availabilities = RideAvailability.get_for_week(current_user, date).order('date ASC, period ASC')
         render json: ride_availabilities
       end
 
