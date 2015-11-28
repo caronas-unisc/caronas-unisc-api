@@ -17,6 +17,10 @@ class Match
 
     if @availability.give?
       json[:remaining_places_in_car] = @availability.remaining_places_in_car
+    else
+      json[:starting_location_address] = @availability.starting_location_address
+      json[:starting_location_latitude] = @availability.starting_location_latitude
+      json[:starting_location_longitude] = @availability.starting_location_longitude
     end
 
     json
