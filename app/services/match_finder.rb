@@ -24,10 +24,10 @@ class MatchFinder
       query = generate_date_and_period_query(requests)
       givers_availabilities = @availability_model.where(*query).give.includes(:user).order('date ASC, period ASC')
     
-      givers_availabilities.each do |availability|
-        my_ride_availability = user.ride_availabilities.find_by(date: availability.date, period: RideAvailability.periods[availability.period])
-        ride = Ride.find_by(receiver_availability: my_ride_availability)
-        matches << Match.new(availability, ride)
+      givers_availabilities.each do |giver_availability|
+        my_ride_availability = user.ride_availabilities.find_by(date: giver_availability.date, period: RideAvailability.periods[giver_availability.period])
+        ride = Ride.find_by(receiver_availability: my_ride_availability, giver_availability: giver_availability)
+        matches << Match.new(giver_availability, ride)
       end
     end
 
