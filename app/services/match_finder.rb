@@ -9,7 +9,7 @@ class MatchFinder
 
     give_availabilities.each do |availability|
       availability.giver_rides.each do |ride|
-        matches << Match.new(ride.receiver_availability, ride)
+        matches << Match.new(ride.receiver_availability, ride) if availability.has_places_available? || ride.accepted?
       end
     end
 
@@ -27,7 +27,8 @@ class MatchFinder
       givers_availabilities.each do |giver_availability|
         my_ride_availability = user.ride_availabilities.find_by(date: giver_availability.date, period: RideAvailability.periods[giver_availability.period])
         ride = Ride.find_by(receiver_availability: my_ride_availability, giver_availability: giver_availability)
-        matches << Match.new(giver_availability, ride)
+
+        matches << Match.new(giver_availability, ride) if giver_availability.has_places_available? || ride
       end
     end
 

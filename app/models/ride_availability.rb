@@ -19,6 +19,14 @@ class RideAvailability < ActiveRecord::Base
     available_places_in_car - giver_rides.accepted.count if give?
   end
 
+  def has_places_available?
+    remaining_places_in_car > 0
+  end
+
+  def full?
+    !has_places_available?
+  end
+
   def create_pending_ride_for!(user)
     receiver_availability = user.ride_availabilities.receive.find_by!(
       period: self.class.periods[period],

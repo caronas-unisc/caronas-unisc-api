@@ -8,6 +8,13 @@ class Ride < ActiveRecord::Base
   validates :giver_availability_id, presence: true
   validates :giver_availability_id, uniqueness: { scope: :receiver_availability_id }
 
+  # do not allow accepting rides for availabilities that are already full
+  validate do |ride|
+    if ride.status_changed? && ride.accepted? && ride.giver_availability.full?
+      ride.errors[:base] << 'The car is full'
+    end
+  end
+
   enum status: [:pending, :accepted]
 
   def as_json(options = {})
