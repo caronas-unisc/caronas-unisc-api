@@ -5,6 +5,7 @@ class Ride < ActiveRecord::Base
 
   enum status: [:pending, :accepted]
 
+  after_create :send_asked_ride_notification
   after_update :send_accepted_ride_notification
 
   validates :status, presence: true
@@ -16,6 +17,20 @@ class Ride < ActiveRecord::Base
   validate do |ride|
     if ride.status_changed? && ride.accepted? && ride.giver_availability.full?
       ride.errors[:base] << 'The car is full'
+    end
+  end
+
+  def send_asked_ride_notification
+    if pending?
+      Notification.create(
+        user: giver_availability.user,
+        type: Notification.types[:asked_ride],
+        info: {
+          date: giver_availability.date,
+          period: giver_availability.period,
+          user: receiver_availability.user.name
+        }
+      )
     end
   end
 
