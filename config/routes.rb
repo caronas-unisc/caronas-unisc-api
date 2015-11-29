@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Users
-      resources :users, except: [:destroy]
+      resources :users, except: [:show, :destroy]
 
       # Sessions
       resources :sessions, only: [:create, :destroy] do
