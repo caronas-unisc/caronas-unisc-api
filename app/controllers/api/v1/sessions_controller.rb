@@ -6,7 +6,11 @@ module Api
 
         if user && user.authenticate(params[:password])
           session = user.create_session
-          render json: { user: session.user, session: session }
+          render json: {
+            user: session.user,
+            session: session,
+            last_notification_id: session.user.notifications.maximum(:id).to_i
+          }
         else
           render text: t(:access_denied), status: :unauthorized
         end

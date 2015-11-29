@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include PasswordReset
 
   has_many :ride_availabilities
+  has_many :notifications
 
   has_secure_password
 

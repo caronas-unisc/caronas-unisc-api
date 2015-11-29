@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       # Matches
       get 'rides/matches' => 'rides#matches'
 
+      # Rides
       resources :rides, only: [:create, :update] do
         resources :messages, only: [:index, :create]
       end
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
       get 'rides/:id' => 'rides#show'
       patch 'rides/:id' => 'rides#update'
       put 'rides/:id' => 'rides#update'
+
+      # Notifications
+      get 'notifications' => 'notifications#index'
 
       # Ride availabilities
       ride_availabilities_constraints = { date: /\d{4}-\d{2}-\d{2}/, period: '(morning|afternoon|night)' }

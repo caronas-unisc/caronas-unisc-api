@@ -3,6 +3,10 @@ class Ride < ActiveRecord::Base
   belongs_to :giver_availability, class_name: 'RideAvailability', foreign_key: 'giver_availability_id'
   belongs_to :receiver_availability, class_name: 'RideAvailability', foreign_key: 'receiver_availability_id'
 
+  enum status: [:pending, :accepted]
+
+  after_update :send_accepted_ride_notification
+
   validates :status, presence: true
   validates :receiver_availability_id, presence: true
   validates :giver_availability_id, presence: true
@@ -15,7 +19,19 @@ class Ride < ActiveRecord::Base
     end
   end
 
-  enum status: [:pending, :accepted]
+  def send_accepted_ride_notification
+    if status_was == 'pending' && accepted?
+      Notification.create(
+        user: receiver_availability.user,
+        type: Notification.types[:accepted_ride],
+        info: {
+          date: receiver_availability.date,
+          period: receiver_availability.period,
+          user: giver_availability.user.name
+        }
+      )
+    end
+  end
 
   def as_json(options = {})
     super(only: [:id, :status])
