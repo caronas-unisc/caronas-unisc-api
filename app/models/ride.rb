@@ -1,5 +1,5 @@
 class Ride < ActiveRecord::Base
-  has_many :messages
+  has_many :messages, dependend: :destroy
   belongs_to :giver_availability, class_name: 'RideAvailability', foreign_key: 'giver_availability_id'
   belongs_to :receiver_availability, class_name: 'RideAvailability', foreign_key: 'receiver_availability_id'
 

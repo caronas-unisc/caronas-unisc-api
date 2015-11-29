@@ -1,10 +1,12 @@
 class RideAvailability < ActiveRecord::Base
-  has_many :giver_rides, class_name: 'Ride', foreign_key: 'giver_availability_id'
-  has_many :receiver_rides, class_name: 'Ride', foreign_key: 'receiver_availability_id'
+  has_many :giver_rides, class_name: 'Ride', foreign_key: 'giver_availability_id', dependent: :destroy
+  has_many :receiver_rides, class_name: 'Ride', foreign_key: 'receiver_availability_id', dependent: :destroy
   belongs_to :user
 
   enum availability_type: [:give, :receive]
   enum period: [:morning, :afternoon, :night]
+
+  after_update :destroy_rides_if_type_changed
 
   validates :date, presence: true
   validates :period, presence: true
@@ -35,6 +37,13 @@ class RideAvailability < ActiveRecord::Base
 
     ride = Ride.find_or_create_by(giver_availability: self, receiver_availability: receiver_availability) do |ride|
       ride.status = Ride.statuses[:pending]
+    end
+  end
+
+  def destroy_rides_if_type_changed
+    if availability_type_changed?
+      giver_rides.destroy_all
+      receiver_rides.destroy_all
     end
   end
 

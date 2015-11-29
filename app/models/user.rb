@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include PasswordReset
 
-  has_many :ride_availabilities
-  has_many :notifications
+  has_many :ride_availabilities, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_secure_password
 
