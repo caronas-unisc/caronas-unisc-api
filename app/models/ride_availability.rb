@@ -18,7 +18,8 @@ class RideAvailability < ActiveRecord::Base
   validates :available_places_in_car, presence: true, if: :give?
 
   def remaining_places_in_car
-    available_places_in_car - giver_rides.accepted.count if give?
+    value = available_places_in_car - giver_rides.accepted.count if give?
+    value && value > 0 ? value : 0
   end
 
   def has_places_available?
